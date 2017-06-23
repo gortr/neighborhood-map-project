@@ -254,30 +254,9 @@ function initMap() {
 
 	// KO Data
 	var self = this;
-	self.filterTerm = ko.observable("");
-	this.locationList = ko.observableArray([]);
 
 	// KO Behaviours
-	locations.forEach(function(locationItem){
-		self.locationList.push( new Location(locationItem));
-	});
 
-	this.filteredList = ko.computed( function() {
-		var filter = self.filterTerm().toLowerCase();
-		if (!filter) {
-			self.locationList().forEach(function(locationItem){
-				locationItem.visible(true);
-			});
-			return self.locationList();
-		} else {
-			return ko.utils.arrayFilter(self.locationList(), function(locationItem) {
-				var string = locationItem.name.toLowerCase();
-				var result = (string.search(filter) >= 0);
-				locationItem.visible(result);
-				return result;
-			});
-		}
-	}, self);
 
 	// This autocomplete is for use in geocoder entry box.
 	var zoomAutocomplete = new google.maps.places.Autocomplete(
