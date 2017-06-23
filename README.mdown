@@ -1,1 +1,0 @@
-Currently Handling Filter Issues as feature is not working.
