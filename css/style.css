@@ -8,11 +8,6 @@ body {
 	padding: 0;
 }
 
-.container {
-	height: 100%;
-	position: relative;
-}
-
 h1 {
 	color: #525454;
 	font-size: 22px;
@@ -27,12 +22,24 @@ hr {
 	border: none;
 }
 
+li {
+	list-style-type: none;
+	border: 1px solid black;
+	text-align: center;
+
+}
+
 #map {
 	bottom:0px;
 	height: 100%;
 	left: 362px;
 	position: absolute;
 	right: 0px;
+}
+
+.container {
+	height: 100%;
+	position: relative;
 }
 
 .options-box {
@@ -58,7 +65,7 @@ form {
 input {
 	width: 150px;
 }
-.search-box {
+.zoom-box {
 	padding: 8px 20px;
 	background: rgba(50, 50, 50, 0.2);
 	border: 0px solid #dbdbdb;

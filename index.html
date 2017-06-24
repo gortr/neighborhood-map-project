@@ -14,14 +14,18 @@
 			<div class="options-box">
 				<h1>Find Gaming Locations in Greenville!</h1>
 				<form>
-					<input type="text" class="search-box" id="zoom-to-area-text" placeholder="Gaming Locations" required>
-					<input type="button" class="button" id="zoom-to-area" value="Filter">
+					<input type="text" class="zoom-box" id="zoom-to-area-text" placeholder="Gaming Locations" required/>
+					<input type="button" class="button" id="zoom-to-area" value="Zoom To Area"/>
 				</form>
 				<hr>
-				<div class="filter" id="filter">
-					Testing
-				</div>
+				<div class="search-filter" id="search-filter">
+					<input type="text" class="filter-places" id="filter-places" data-bind="value: filterKeyword, valueUpdate: 'afterkeyup'"/>
 
+					<ul class="filtered-search" id="filtered-search" data-bind="foreach: filteredLocations">
+						<li data-bind="text: title"></li>
+					</ul>
+				</div>
+				<hr>
 			</div>
 			<div id="map"></div>
 		</div>
