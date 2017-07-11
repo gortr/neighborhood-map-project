@@ -146,13 +146,42 @@ var markers = [];
 var self = this;
 
 // --- ARRAY OF GAMING LOCATIONS ---
-var locations = [
-	{title: 'Games Workshop', location: {lat: 34.823393, lng: -82.284911}},
-	{title: 'Cornermagic Gaming Center', location: {lat: 34.770675, lng: -82.46131}},
-	{title: 'Boardwalk', location: {lat: 34.84954, lng: -82.3297}},
-	{title: 'Borderlands', location: {lat: 34.843697, lng: -82.364306}},
-	{title: 'NextGen Trading', location: {lat: 34.784927, lng: -82.313561}},
-	{title: 'Video Game Cavern', location: {lat: 34.908524, lng: -82.327027}}
+var locations = [{
+		title: 'Games Workshop',
+		location: {
+			lat: 34.823393,
+			lng: -82.284911
+		}},
+	{
+		title: 'Cornermagic Gaming Center',
+		location: {
+			lat: 34.770675,
+			lng: -82.46131
+		}},
+	{
+		title: 'Boardwalk',
+		location: {
+			lat: 34.84954,
+			lng: -82.3297
+		}},
+	{
+		title: 'Borderlands',
+		location: {
+			lat: 34.843697,
+			lng: -82.364306
+		}},
+	{
+		title: 'NextGen Trading',
+		location: {
+			lat: 34.784927,
+			lng: -82.313561
+		}},
+	{
+		title: 'Video Game Cavern',
+		location: {
+			lat: 34.908524,
+			lng: -82.327027
+		}}
 ];
 
 // Populates markers with info regarding location.
@@ -245,6 +274,7 @@ function zoomToArea() {
 // *************************
 // * - KO Data Structure - *
 // *************************
+
 var ViewModel = function() {
 	var self = this;
 
@@ -311,7 +341,7 @@ function initMap() {
 
 		// Create onClick event to open an infowindow for each marker.
 		marker.addListener('click', function() {
-			populateInfoWindow(self, largeInfowindow);
+			populateInfoWindow(this, largeInfowindow);
 		});
 
 		document.getElementById('zoom-to-area').addEventListener('click', function() {
@@ -324,5 +354,6 @@ function initMap() {
 }
 
 function startMap() {
-	ko.applyBindings(new ViewModel());
+	var vm = new ViewModel();
+	ko.applyBindings(vm);
 }
