@@ -141,8 +141,7 @@ var styles = [
 ];
 
 /* === GLOBAL DECLARATIONS === */
-var map;
-var markers = [];
+var map, vm;
 var self = this;
 
 // --- ARRAY OF GAMING LOCATIONS ---
@@ -282,11 +281,11 @@ var ViewModel = function() {
 
 	self.locationsArray = ko.observableArray([]);
 
-	locations.forEach(function(locationItem) {
+	/*locations.forEach(function(locationItem) {
 		self.locationsArray.push(locations);
-	});
+	});*/
 
-	self.filteredLocations = ko.computed(function() {
+	/*self.filteredLocations = ko.computed(function() {
 		var filter = this.filter().toLowerCase();
 		if (!filter) {
 			return this.items();
@@ -295,8 +294,11 @@ var ViewModel = function() {
 				return ko.utils.stringStartsWith(item.name().toLowerCase(), filter);
 			});
 		}
-	}, self);
+	}, self);*/
 }
+
+vm = new ViewModel();
+ko.applyBindings(vm);
 
 // **************************
 // * - MAP INITIALIZATION - *
@@ -337,7 +339,10 @@ function initMap() {
 		});
 
 		// Push marker to our array of markers.
-		markers.push(marker);
+		vm.locationsArray.push(marker);
+
+		// Attaches marker objects to ko array
+		//vm.locationsArray()[i].marker = marker;
 
 		// Create onClick event to open an infowindow for each marker.
 		marker.addListener('click', function() {
@@ -348,12 +353,7 @@ function initMap() {
 			zoomToArea();
 		});
 
-		bounds.extend(markers[i].position);
+		bounds.extend(vm.locationsArray()[i].position);
 	}
 	map.fitBounds(bounds);
-}
-
-function startMap() {
-	var vm = new ViewModel();
-	ko.applyBindings(vm);
 }
