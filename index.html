@@ -19,9 +19,12 @@
 				</form>
 				<hr>
 				<div class="search-filter" id="search-filter">
-					<input type="text" class="filter-places" id="filter-places" data-bind="value: filterKeyword, valueUpdate: 'afterkeyup'"/>
-
-
+					<input type="text" class="filter-places" id="filter-places" data-bind="textInput: filterKeyword, valueUpdate: 'afterkeyup'"/>
+				</div>
+				<div class="filteredLocations" id="filteredLocations">
+					<ul class="results" id="results" data-bind="foreach: filteredList">
+						<li class="locale" id="locale" data-bind="text: title"></li>
+					</ul>
 				</div>
 				<hr>
 			</div>
