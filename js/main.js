@@ -150,37 +150,43 @@ var locations = [{
 		location: {
 			lat: 34.823393,
 			lng: -82.284911
-		}},
+		},
+		visible: ko.observable(true)},
 	{
 		title: 'Cornermagic Gaming Center',
 		location: {
 			lat: 34.770675,
 			lng: -82.46131
-		}},
+		},
+		visible: ko.observable(true)},
 	{
 		title: 'Boardwalk',
 		location: {
 			lat: 34.84954,
 			lng: -82.3297
-		}},
+		},
+		visible: ko.observable(true)},
 	{
 		title: 'Borderlands',
 		location: {
 			lat: 34.843697,
 			lng: -82.364306
-		}},
+		},
+		visible: ko.observable(true)},
 	{
 		title: 'NextGen Trading',
 		location: {
 			lat: 34.784927,
 			lng: -82.313561
-		}},
+		},
+		visible: ko.observable(true)},
 	{
 		title: 'Video Game Cavern',
 		location: {
 			lat: 34.908524,
 			lng: -82.327027
-		}}
+		},
+		visible: ko.observable(true)}
 ];
 
 // Populates markers with info regarding location.
@@ -281,20 +287,25 @@ var ViewModel = function() {
 
 	self.locationsArray = ko.observableArray([]);
 
-	/*locations.forEach(function(locationItem) {
-		self.locationsArray.push(locations);
-	});*/
+	self.filteredList = self.locationsArray;
 
-	/*self.filteredLocations = ko.computed(function() {
-		var filter = this.filter().toLowerCase();
+	var stringStartsWith = function (string, startsWith) {
+	    string = string || "";
+	    if (startsWith.length > string.length)
+	        return false;
+	    return string.substring(0, startsWith.length) === startsWith;
+	};
+
+	self.filteredLocations = ko.computed(function() {
+		var filter = self.filterKeyword().toLowerCase();
 		if (!filter) {
-			return this.items();
+			return self.filteredList();
 		} else {
-			return ko.utils.arrayFilter(this.items(), function(item) {
-				return ko.utils.stringStartsWith(item.name().toLowerCase(), filter);
+			return ko.utils.arrayFilter(self.filteredList(), function(item) {
+				return ko.utils.stringStartsWith(filteredList.title.toLowerCase(), self.filterKeyword);
 			});
 		}
-	}, self);*/
+	}, self);
 }
 
 vm = new ViewModel();
