@@ -22,7 +22,7 @@
 					<input type="text" class="filter-places" id="filter-places" data-bind="textInput: filterKeyword, valueUpdate: 'afterkeyup'"/>
 				</div>
 				<div class="filteredLocations" id="filteredLocations">
-					<ul class="results" id="results" data-bind="foreach: filteredList">
+					<ul class="results" id="results" data-bind="foreach: filteredLocations">
 						<li class="locale" id="locale" data-bind="text: title"></li>
 					</ul>
 				</div>
