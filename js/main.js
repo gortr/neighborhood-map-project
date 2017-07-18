@@ -302,8 +302,8 @@ var ViewModel = function() {
 			return self.filteredList();
 		} else {
 			return ko.utils.arrayFilter(self.filteredList(), function(item) {
-				var string = item.title().toLowerCase();
-				return stringStartsWith(string, self.filter);
+				var string = item.title.toLowerCase();
+				return stringStartsWith(string, filter);
 			});
 		}
 	}, self);
