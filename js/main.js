@@ -303,7 +303,7 @@ var fsrequest = function (marker, infowindow) {
 	    var name = data.response.venue.name;
 	    var location = data.response.venue.location.address;
 
-	    infowindow.setContent(name + "; FourSquare Rating: " + rating.toString() + "; " + location);
+	    infowindow.setContent(name + ", FourSquare Rating: " + rating.toString() + ", " + location);
 		infowindow.open(map, marker);
 		},
 		error: function(error) {
