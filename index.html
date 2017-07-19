@@ -10,24 +10,27 @@
 
 	</head>
 	<body>
-		<div class="container">
-			<div class="options-box">
-				<h1>Find Gaming Locations in Greenville!</h1>
-				<form>
-					<input type="text" class="zoom-box" id="zoom-to-area-text" placeholder="Gaming Locations" required/>
-					<input type="button" class="button" id="zoom-to-area" value="Zoom To Area"/>
-				</form>
-				<hr>
-				<div class="search-filter" id="search-filter">
-					<input type="text" class="filter-places" id="filter-places" data-bind="textInput: filterKeyword, valueUpdate: 'afterkeyup'"/>
-				</div>
-				<div class="filteredLocations" id="filteredLocations">
-					<ul class="results" id="results" data-bind="foreach: filteredLocations">
-						<li class="locale" id="locale" data-bind="text: title"></li>
-					</ul>
-				</div>
-				<hr>
+		<div id="options-box" class="options-box">
+			<h1>Find Gaming Locations in Greenville!</h1>
+			<form>
+				<input type="text" class="zoom-box" id="zoom-to-area-text" placeholder="Gaming Locations" required/>
+				<input type="button" class="button" id="zoom-to-area" value="Zoom To Area"/>
+			</form>
+			<hr>
+			<div class="search-filter" id="search-filter">
+				<input type="text" class="filter-places" id="filter-places" data-bind="textInput: filterKeyword, valueUpdate: 'afterkeyup'"/>
 			</div>
+			<div class="filteredLocations" id="filteredLocations">
+				<ul class="results" id="results" data-bind="foreach: filteredLocations">
+					<li class="locale" id="locale" data-bind="text: title"></li>
+				</ul>
+			</div>
+		</div>
+			<hr>
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger"></label>
+
+		<div class="container">
 			<div id="map"></div>
 		</div>
 
