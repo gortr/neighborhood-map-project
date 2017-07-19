@@ -342,7 +342,8 @@ var ViewModel = function() {
 		} else {
 			return ko.utils.arrayFilter(self.filteredList(), function(item) {
 				var string = item.title.toLowerCase().indexOf(filter) >= 0;
-						return item.setVisible(string);
+						item.setVisible(string);
+						return string;
 				return stringStartsWith(string, filter);
 			});
 		}
