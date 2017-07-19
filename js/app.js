@@ -339,7 +339,7 @@ var ViewModel = function() {
 			return ko.utils.arrayFilter(self.filteredList(), function(item) {
 				var string = item.title.toLowerCase().indexOf(filter) >= 0;
 						item.setVisible(string);
-						return string;
+						//return string;
 				return stringStartsWith(string, filter);
 			});
 		}
@@ -371,6 +371,15 @@ function initMap() {
 	// This will be the default marker color.
 	var defaultIcon = makeMarkerIcon('0091FF');
 
+	function clickMarker(){
+		fsrequest(this, infowindow);
+		populateInfoWindow(this, infowindow);
+	}
+
+	document.getElementById('zoom-to-area').addEventListener('click', function() {
+		zoomToArea();
+	});
+
 	// Iterates through the locations array and places the markers.
 	for (var i = 0; i < locations.length; i++) {
 		var position = locations[i].location;
@@ -387,17 +396,8 @@ function initMap() {
 		// Push marker to our array of markers.
 		vm.locationsArray.push(marker);
 
-		function clickMarker(){
-			fsrequest(this, infowindow);
-			populateInfoWindow(this, infowindow);
-		}
-
 		// Create onClick event to open an infowindow for each marker.
 		marker.addListener('click', clickMarker);
-
-		document.getElementById('zoom-to-area').addEventListener('click', function() {
-			zoomToArea();
-		});
 
 		bounds.extend(vm.locationsArray()[i].position);
 	}
