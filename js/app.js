@@ -211,34 +211,6 @@ function populateInfoWindow(marker, infowindow) {
 		infowindow.addListener('closeclick', function() {
 			infowindow.marker = null;
 		});
-		/* === MARKER LOCATION STREETVIEW CODE === */
-		var streetViewService = new google.maps.StreetViewService();
-		var radius = 50;
-		// Calculates the panorama for the street view if all checks out.
-		function getStreetView(data, status) {
-			if (status == google.maps.StreetViewStatus.OK) {
-				var nearStreetViewLocation = data.location.latLng;
-				var heading = google.maps.geometry.spherical.computeHeading(
-					nearStreetViewLocation, marker.position);
-					infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
-					var panoramaOptions = {
-						position: nearStreetViewLocation,
-						pov: {
-							heading: heading,
-							pitch: 15
-						}
-					};
-				var panorama = new google.maps.StreetViewPanorama(
-					document.getElementById('pano'), panoramaOptions);
-			} else {
-				infowindow.setContent('<div>' + marker.title + '</div>' +
-					'<div>No Street View Available</div>');
-			}
-		}
-		// Get closest streetview image within 50 meters of marker position.
-		streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
-		// Open infowindow on correct marker.
-		infowindow.open(map, marker);
 	}
 }
 
@@ -339,8 +311,8 @@ var ViewModel = function() {
 			return ko.utils.arrayFilter(self.filteredList(), function(item) {
 				var string = item.title.toLowerCase().indexOf(filter) >= 0;
 						item.setVisible(string);
-						//return string;
-				return stringStartsWith(string, filter);
+						return string;
+						return stringStartsWith(string, filter);
 			});
 		}
 	}, self);
