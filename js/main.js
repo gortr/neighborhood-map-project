@@ -1,5 +1,5 @@
 // Makes sure code within this script is utilized as intended.
-'use strict'
+// 'use strict'
 
 // Styling for usage on map.
 var styles = [
