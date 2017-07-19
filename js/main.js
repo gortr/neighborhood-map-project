@@ -151,42 +151,48 @@ var locations = [{
 			lat: 34.823393,
 			lng: -82.284911
 		},
-		visible: ko.observable(true)},
+		venueFoursquareID: '532b16ca498e231f8899cc31'
+	},
 	{
 		title: 'Cornermagic Gaming Center',
 		location: {
 			lat: 34.770675,
 			lng: -82.46131
 		},
-		visible: ko.observable(true)},
+		venueFoursquareID: '4e9e05fe9a52db291015680f'
+	},
 	{
 		title: 'Boardwalk',
 		location: {
 			lat: 34.84954,
 			lng: -82.3297
 		},
-		visible: ko.observable(true)},
+		venueFoursquareID: '4e3ecc0218a83d5b28567645'
+	},
 	{
 		title: 'Borderlands',
 		location: {
 			lat: 34.843697,
 			lng: -82.364306
 		},
-		visible: ko.observable(true)},
+		venueFoursquareID: '4b58dcbaf964a520686f28e3'
+	},
 	{
 		title: 'NextGen Trading',
 		location: {
 			lat: 34.784927,
 			lng: -82.313561
 		},
-		visible: ko.observable(true)},
+		venueFoursquareID: '4e6e6f978877d6d0b13776ec'
+	},
 	{
 		title: 'Video Game Cavern',
 		location: {
 			lat: 34.908524,
 			lng: -82.327027
 		},
-		visible: ko.observable(true)}
+		venueFoursquareID: '4c17b7ead4d9c9286f5aee29'
+	}
 ];
 
 // Populates markers with info regarding location.
@@ -276,6 +282,36 @@ function zoomToArea() {
 	}
 }
 
+// ***************************
+// * - FOURSQUARE API DATA - *
+// ***************************
+
+var fsrequest = function (marker, infowindow) {
+	var apiURL = 'https://api.foursquare.com/v2/venues/';
+	var foursquareClientID = '4VTAHD05VR3MNY01EETUDFB4XZLF2EIULNAERXXB1GWUEHSD'
+	var foursquareSecret ='DFGEXFK1B40GMC0TIEYNGARJQIISGNJ0YMY42IXHSOA0XRE1';
+	var foursquareVersion = '20170115';
+	var venueFoursquareID = marker.id;
+
+	var foursquareURL = apiURL + venueFoursquareID + '?client_id=' + foursquareClientID +  '&client_secret=' + foursquareSecret +'&v=' + foursquareVersion;
+
+	$.ajax({
+		url: foursquareURL,
+		success: function(data) {
+	    console.log(data);
+	    var rating = data.response.venue.rating;
+	    var name = data.response.venue.name;
+	    var location = data.response.venue.location.address;
+
+	    infowindow.setContent(name + "; FourSquare Rating: " + rating.toString() + "; " + location);
+		infowindow.open(map, marker);
+		},
+		error: function(error) {
+			alert("Error, Four Square api data could not display")
+		}
+	});
+};
+
 // *************************
 // * - KO Data Structure - *
 // *************************
@@ -299,10 +335,15 @@ var ViewModel = function() {
 	self.filteredLocations = ko.computed(function() {
 		var filter = self.filterKeyword().toLowerCase();
 		if (!filter) {
+			self.filteredList().forEach(function(item){
+				item.setVisible(true);
+			});
 			return self.filteredList();
 		} else {
 			return ko.utils.arrayFilter(self.filteredList(), function(item) {
-				var string = item.title.toLowerCase();
+				var string = item.title.toLowerCase().indexOf(filter) >= 0
+						item.setVisible(string);
+						return string;
 				return stringStartsWith(string, filter);
 			});
 		}
@@ -347,7 +388,7 @@ function initMap() {
 			title: title,
 			icon: defaultIcon,
 			animation: google.maps.Animation.DROP,
-			id: i
+			id: locations[i].venueFoursquareID
 		});
 
 		// Push marker to our array of markers.
@@ -358,6 +399,7 @@ function initMap() {
 
 		// Create onClick event to open an infowindow for each marker.
 		marker.addListener('click', function() {
+			fsrequest(this, largeInfowindow);
 			populateInfoWindow(this, largeInfowindow);
 		});
 
