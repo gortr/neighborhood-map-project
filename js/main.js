@@ -372,7 +372,7 @@ function initMap() {
 	// Bias boundaries within map for zoom to text area.
 	zoomAutocomplete.bindTo('bounds', map);
 
-	var largeInfowindow = new google.maps.InfoWindow();
+	var infowindow = new google.maps.InfoWindow();
 	var bounds = new google.maps.LatLngBounds();
 
 	// This will be the default marker color.
@@ -399,8 +399,8 @@ function initMap() {
 
 		// Create onClick event to open an infowindow for each marker.
 		marker.addListener('click', function() {
-			fsrequest(this, largeInfowindow);
-			populateInfoWindow(this, largeInfowindow);
+			fsrequest(this, infowindow);
+			populateInfoWindow(this, infowindow);
 		});
 
 		document.getElementById('zoom-to-area').addEventListener('click', function() {
