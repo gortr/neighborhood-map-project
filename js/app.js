@@ -1,142 +1,3 @@
-// Styling for usage on map.
-var styles = [
-{
-	"featureType": "all",
-	"elementType": "labels.text.fill",
-	"stylers": [
-	{
-		"color": "#ffffff"
-	}
-	]
-},
-{
-	"featureType": "all",
-	"elementType": "labels.text.stroke",
-	"stylers": [
-	{
-		"color": "#000000"
-	},
-	{
-		"lightness": 13
-	}
-	]
-},
-{
-	"featureType": "administrative",
-	"elementType": "geometry.fill",
-	"stylers": [
-	{
-		"color": "#000000"
-	}
-	]
-},
-{
-	"featureType": "administrative",
-	"elementType": "geometry.stroke",
-	"stylers": [
-	{
-		"color": "#144b53"
-	},
-	{
-		"lightness": 14
-	},
-	{
-		"weight": 1.4
-	}
-	]
-},
-{
-	"featureType": "landscape",
-	"elementType": "all",
-	"stylers": [
-	{
-		"color": "#08304b"
-	}
-	]
-},
-{
-	"featureType": "poi",
-	"elementType": "geometry",
-	"stylers": [
-	{
-		"color": "#0c4152"
-	},
-	{
-		"lightness": 5
-	}
-	]
-},
-{
-	"featureType": "road.highway",
-	"elementType": "geometry.fill",
-	"stylers": [
-	{
-		"color": "#000000"
-	}
-	]
-},
-{
-	"featureType": "road.highway",
-	"elementType": "geometry.stroke",
-	"stylers": [
-	{
-		"color": "#0b434f"
-	},
-	{
-		"lightness": 25
-	}
-	]
-},
-{
-	"featureType": "road.arterial",
-	"elementType": "geometry.fill",
-	"stylers": [
-	{
-		"color": "#000000"
-	}
-	]
-},
-{
-	"featureType": "road.arterial",
-	"elementType": "geometry.stroke",
-	"stylers": [
-	{
-		"color": "#0b3d51"
-	},
-	{
-		"lightness": 16
-	}
-	]
-},
-{
-	"featureType": "road.local",
-	"elementType": "geometry",
-	"stylers": [
-	{
-		"color": "#000000"
-	}
-	]
-},
-{
-	"featureType": "transit",
-	"elementType": "all",
-	"stylers": [
-	{
-		"color": "#146474"
-	}
-	]
-},
-{
-	"featureType": "water",
-	"elementType": "all",
-	"stylers": [
-	{
-		"color": "#021019"
-	}
-	]
-}
-];
-
 /* === GLOBAL DECLARATIONS === */
 var map, vm;
 var self = this;
@@ -181,6 +42,14 @@ var locations = [{
 		lng: -82.313561
 	},
 	venueFoursquareID: '4e6e6f978877d6d0b13776ec'
+},
+{
+	title: 'Video Game Cavern',
+	location: {
+		lat: 34.908524,
+		lng: -82.327027
+	},
+	venueFoursquareID: '4c17b7ead4d9c9286f5aee29'
 }
 ];
 
@@ -218,30 +87,6 @@ function makeMarkerIcon(markerColor) {
 	return markerImage;
 }
 
-// Takes input from user and locates/zooms into specified area. Allows user to focus on one area of map.
-function zoomToArea() {
-	// Initialize GeoCoder
-	var geocoder = new google.maps.Geocoder();
-	// Get address or place that user inputted.
-	var address = document.getElementById('zoom-to-area-text').value;
-	// Make sure address isn't blank.
-	if (address === '') {
-		window.alert('You must enter an area or address');
-	} else {
-		// Geocode address/area inputted to get the center. Then center and zoom in on area.
-		geocoder.geocode(
-			{ 	address: address,
-			}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					map.setCenter(results[0].geometry.location);
-					map.setZoom(20);
-				} else {
-					window.alert('We could not find that location - please enter more specific details.');
-				}
-			});
-	}
-}
-
 // ***************************
 // * - FOURSQUARE API DATA - *
 // ***************************
@@ -261,7 +106,7 @@ var fsrequest = function (marker, infowindow) {
 			console.log(data);
 	    // var rating = data.response.venue.rating;
 	    var name = data.response.venue.name;
-	    var location = data.response.venue.location.address;
+	    var location = data.response.venue.location.address || ' No location provided';
 
 	    infowindow.setContent(name + "," + location);
 	    infowindow.open(map, marker);
@@ -285,6 +130,8 @@ var ViewModel = function() {
 
 	self.filteredList = self.locationsArray;
 
+
+
 	self.filteredLocations = ko.computed(function() {
 		var filter = self.filterKeyword().toLowerCase();
 		if (!filter) {
@@ -301,8 +148,8 @@ var ViewModel = function() {
 		}
 	}, self);
 
-	self.showMe = function(string) {
-		google.maps.event.trigger(string.marker, 'click');
+	self.showMe = function(locale) {
+		google.maps.event.trigger(self.locale, 'click');
 	};
 };
 
@@ -319,12 +166,6 @@ function initMap() {
 		mapTypeControl: false
 	});
 
-	// This autocomplete is for use in geocoder entry box.
-	var zoomAutocomplete = new google.maps.places.Autocomplete(
-		document.getElementById('zoom-to-area-text'));
-	// Bias boundaries within map for zoom to text area.
-	zoomAutocomplete.bindTo('bounds', map);
-
 	var infowindow = new google.maps.InfoWindow();
 	var bounds = new google.maps.LatLngBounds();
 
@@ -335,10 +176,6 @@ function initMap() {
 		fsrequest(this, infowindow);
 		populateInfoWindow(this, infowindow);
 	}
-
-	document.getElementById('zoom-to-area').addEventListener('click', function() {
-		zoomToArea();
-	});
 
 	// Iterates through the locations array and places the markers.
 	for (var i = 0; i < locations.length; i++) {
@@ -361,7 +198,9 @@ function initMap() {
 
 		bounds.extend(vm.locationsArray()[i].position);
 	}
-	map.fitBounds(bounds);
+	google.maps.event.addDomListener(window, 'resize', function() {
+		map.fitBounds(bounds);
+	});
 }
 
 vm = new ViewModel();
