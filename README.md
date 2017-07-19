@@ -11,7 +11,7 @@ README.md
 
 **Connected JavaScript Files**
 
-`main.js`
+`app.js`
 `knockout-3.4.2.js`
 
 **Connected CSS Files**
@@ -23,7 +23,7 @@ README.md
 
 This is the primary file required in order to run the neighborhood map project.
 
-This file imports the script code contained within the main.js file and knockout-3.4.2.js file.
+This file imports the script code contained within the app.js file and knockout-3.4.2.js file.
 
 ### Operating Instructions
 Please confirm that you have saved the above mentioned files together in a folder.
