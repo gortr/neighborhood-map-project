@@ -293,13 +293,6 @@ var ViewModel = function() {
 
 	self.filteredList = self.locationsArray;
 
-	var stringStartsWith = function (string, startsWith) {
-	    string = string || "";
-	    if (startsWith.length > string.length)
-	        return false;
-	    return string.substring(0, startsWith.length) === startsWith;
-	};
-
 	self.filteredLocations = ko.computed(function() {
 		var filter = self.filterKeyword().toLowerCase();
 		if (!filter) {
@@ -312,7 +305,6 @@ var ViewModel = function() {
 				var string = item.title.toLowerCase().indexOf(filter) >= 0;
 						item.setVisible(string);
 						return string;
-						return stringStartsWith(string, filter);
 			});
 		}
 	}, self);
