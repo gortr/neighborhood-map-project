@@ -149,7 +149,7 @@ var ViewModel = function() {
 	}, self);
 
 	self.showMe = function(locale) {
-		google.maps.event.trigger(self.locale, 'click');
+		google.maps.event.trigger(marker[i], 'click');
 	};
 };
 
