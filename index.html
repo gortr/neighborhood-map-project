@@ -10,7 +10,7 @@
 
 	</head>
 	<body>
-		<div id="options-box" class="options-box">
+		<nav id="options-box" class="options-box">
 			<h1>Find Gaming Locations in Greenville!</h1>
 			<form>
 				<input type="text" class="zoom-box" id="zoom-to-area-text" placeholder="Gaming Locations" required/>
@@ -22,24 +22,25 @@
 			</div>
 			<div class="filteredLocations" id="filteredLocations">
 				<ul class="results" id="results" data-bind="foreach: filteredLocations">
-					<li class="locale" id="locale" data-bind="text: title"></li>
+					<li class="locale" id="locale" data-bind="text: title, click: $parent.showMe"></li>
 				</ul>
 			</div>
-		</div>
-			<hr>
-			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-			<label for="nav-trigger"></label>
+		</nav>
 
-		<div class="container">
-			<div id="map"></div>
-		</div>
+		<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+		<label for="nav-trigger"></label>
 
-		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry&key=AIzaSyCGJN7LaNHcoJwP-upypx9RdzZnNLZ6oaw&v=3&callback=initMap">
-		</script>
+		<main class="container">
+			<div id="map">Google Maps was unable to load. Please try reloading the page or trying again later.</div>
+		</main>
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script type='text/javascript' src='js/knockout-3.4.2.js'></script>
+		<script src='js/map-styling.js'></script>
 		<script src='js/app.js'></script>
+		<script async defer
+			src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry&key=AIzaSyCGJN7LaNHcoJwP-upypx9RdzZnNLZ6oaw&v=3&callback=initMap" onerror="errorHandling()">
+		</script>
 
 	</body>
 </html>

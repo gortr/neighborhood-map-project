@@ -1,140 +1,140 @@
 // Styling for usage on map.
 var styles = [
-    {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#ffffff"
-            }
-        ]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "color": "#000000"
-            },
-            {
-                "lightness": 13
-            }
-        ]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#000000"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "color": "#144b53"
-            },
-            {
-                "lightness": 14
-            },
-            {
-                "weight": 1.4
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#08304b"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#0c4152"
-            },
-            {
-                "lightness": 5
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#000000"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "color": "#0b434f"
-            },
-            {
-                "lightness": 25
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#000000"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "color": "#0b3d51"
-            },
-            {
-                "lightness": 16
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#000000"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#146474"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#021019"
-            }
-        ]
-    }
+{
+	"featureType": "all",
+	"elementType": "labels.text.fill",
+	"stylers": [
+	{
+		"color": "#ffffff"
+	}
+	]
+},
+{
+	"featureType": "all",
+	"elementType": "labels.text.stroke",
+	"stylers": [
+	{
+		"color": "#000000"
+	},
+	{
+		"lightness": 13
+	}
+	]
+},
+{
+	"featureType": "administrative",
+	"elementType": "geometry.fill",
+	"stylers": [
+	{
+		"color": "#000000"
+	}
+	]
+},
+{
+	"featureType": "administrative",
+	"elementType": "geometry.stroke",
+	"stylers": [
+	{
+		"color": "#144b53"
+	},
+	{
+		"lightness": 14
+	},
+	{
+		"weight": 1.4
+	}
+	]
+},
+{
+	"featureType": "landscape",
+	"elementType": "all",
+	"stylers": [
+	{
+		"color": "#08304b"
+	}
+	]
+},
+{
+	"featureType": "poi",
+	"elementType": "geometry",
+	"stylers": [
+	{
+		"color": "#0c4152"
+	},
+	{
+		"lightness": 5
+	}
+	]
+},
+{
+	"featureType": "road.highway",
+	"elementType": "geometry.fill",
+	"stylers": [
+	{
+		"color": "#000000"
+	}
+	]
+},
+{
+	"featureType": "road.highway",
+	"elementType": "geometry.stroke",
+	"stylers": [
+	{
+		"color": "#0b434f"
+	},
+	{
+		"lightness": 25
+	}
+	]
+},
+{
+	"featureType": "road.arterial",
+	"elementType": "geometry.fill",
+	"stylers": [
+	{
+		"color": "#000000"
+	}
+	]
+},
+{
+	"featureType": "road.arterial",
+	"elementType": "geometry.stroke",
+	"stylers": [
+	{
+		"color": "#0b3d51"
+	},
+	{
+		"lightness": 16
+	}
+	]
+},
+{
+	"featureType": "road.local",
+	"elementType": "geometry",
+	"stylers": [
+	{
+		"color": "#000000"
+	}
+	]
+},
+{
+	"featureType": "transit",
+	"elementType": "all",
+	"stylers": [
+	{
+		"color": "#146474"
+	}
+	]
+},
+{
+	"featureType": "water",
+	"elementType": "all",
+	"stylers": [
+	{
+		"color": "#021019"
+	}
+	]
+}
 ];
 
 /* === GLOBAL DECLARATIONS === */
@@ -143,53 +143,45 @@ var self = this;
 
 // --- ARRAY OF GAMING LOCATIONS ---
 var locations = [{
-		title: 'Games Workshop',
-		location: {
-			lat: 34.823393,
-			lng: -82.284911
-		},
-		venueFoursquareID: '532b16ca498e231f8899cc31'
+	title: 'Games Workshop',
+	location: {
+		lat: 34.823393,
+		lng: -82.284911
 	},
-	{
-		title: 'Cornermagic Gaming Center',
-		location: {
-			lat: 34.770675,
-			lng: -82.46131
-		},
-		venueFoursquareID: '4e9e05fe9a52db291015680f'
+	venueFoursquareID: '532b16ca498e231f8899cc31'
+},
+{
+	title: 'Cornermagic Gaming Center',
+	location: {
+		lat: 34.770675,
+		lng: -82.46131
 	},
-	{
-		title: 'Boardwalk',
-		location: {
-			lat: 34.84954,
-			lng: -82.3297
-		},
-		venueFoursquareID: '4e3ecc0218a83d5b28567645'
+	venueFoursquareID: '4e9e05fe9a52db291015680f'
+},
+{
+	title: 'Boardwalk',
+	location: {
+		lat: 34.84954,
+		lng: -82.3297
 	},
-	{
-		title: 'Borderlands',
-		location: {
-			lat: 34.843697,
-			lng: -82.364306
-		},
-		venueFoursquareID: '4b58dcbaf964a520686f28e3'
+	venueFoursquareID: '4e3ecc0218a83d5b28567645'
+},
+{
+	title: 'Borderlands',
+	location: {
+		lat: 34.843697,
+		lng: -82.364306
 	},
-	{
-		title: 'NextGen Trading',
-		location: {
-			lat: 34.784927,
-			lng: -82.313561
-		},
-		venueFoursquareID: '4e6e6f978877d6d0b13776ec'
+	venueFoursquareID: '4b58dcbaf964a520686f28e3'
+},
+{
+	title: 'NextGen Trading',
+	location: {
+		lat: 34.784927,
+		lng: -82.313561
 	},
-	{
-		title: 'Video Game Cavern',
-		location: {
-			lat: 34.908524,
-			lng: -82.327027
-		},
-		venueFoursquareID: '4c17b7ead4d9c9286f5aee29'
-	}
+	venueFoursquareID: '4e6e6f978877d6d0b13776ec'
+}
 ];
 
 // Populates markers with info regarding location.
@@ -238,15 +230,15 @@ function zoomToArea() {
 	} else {
 		// Geocode address/area inputted to get the center. Then center and zoom in on area.
 		geocoder.geocode(
-		{ 	address: address,
-		}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				map.setCenter(results[0].geometry.location);
-				map.setZoom(20);
-			} else {
-				window.alert('We could not find that location - please enter more specific details.');
-			}
-		});
+			{ 	address: address,
+			}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+					map.setZoom(20);
+				} else {
+					window.alert('We could not find that location - please enter more specific details.');
+				}
+			});
 	}
 }
 
@@ -266,18 +258,18 @@ var fsrequest = function (marker, infowindow) {
 	$.ajax({
 		url: foursquareURL,
 		success: function(data) {
-	    console.log(data);
+			console.log(data);
 	    // var rating = data.response.venue.rating;
 	    var name = data.response.venue.name;
 	    var location = data.response.venue.location.address;
 
 	    infowindow.setContent(name + "," + location);
-		infowindow.open(map, marker);
-		},
-		error: function(error) {
-			alert("Error, Four Square api data could not display");
-		}
-	});
+	    infowindow.open(map, marker);
+	},
+	error: function(error) {
+		alert("Error, Four Square api data could not display");
+	}
+});
 };
 
 // *************************
@@ -303,11 +295,15 @@ var ViewModel = function() {
 		} else {
 			return ko.utils.arrayFilter(self.filteredList(), function(item) {
 				var string = item.title.toLowerCase().indexOf(filter) >= 0;
-						item.setVisible(string);
-						return string;
+				item.setVisible(string);
+				return string;
 			});
 		}
 	}, self);
+
+	self.showMe = function(string) {
+		google.maps.event.trigger(string.marker, 'click');
+	};
 };
 
 // **************************
@@ -317,7 +313,7 @@ function initMap() {
 
 	// Constructor creates a new map - only center and zoom are required.
 	map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: 34.852618, lng: -82.39401}, // New York
+		center: {lat: 34.852618, lng: -82.39401}, // Greenville
 		zoom: 13,
 		styles: styles,
 		mapTypeControl: false
@@ -370,3 +366,7 @@ function initMap() {
 
 vm = new ViewModel();
 ko.applyBindings(vm);
+
+function errorHandling() {
+	alert("Google Maps has failed to load. Please try again in a moment.");
+}
