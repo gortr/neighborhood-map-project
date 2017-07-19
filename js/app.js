@@ -1,6 +1,3 @@
-// Makes sure code within this script is utilized as intended.
-// 'use strict'
-
 // Styling for usage on map.
 var styles = [
     {
@@ -214,37 +211,36 @@ function populateInfoWindow(marker, infowindow) {
 		infowindow.addListener('closeclick', function() {
 			infowindow.marker = null;
 		});
-	}
-}
-
-	/* === MARKER LOCATION STREETVIEW CODE === */
-	// Calculates the panorama for the street view if all checks out.
-	function getStreetView(data, status) {
+		/* === MARKER LOCATION STREETVIEW CODE === */
 		var streetViewService = new google.maps.StreetViewService();
 		var radius = 50;
-		if (status == google.maps.StreetViewStatus.OK) {
-			var nearStreetViewLocation = data.location.latLng;
-			var heading = google.maps.geometry.spherical.computeHeading(
-				nearStreetViewLocation, marker.position);
-				infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
-				var panoramaOptions = {
-					position: nearStreetViewLocation,
-					pov: {
-						heading: heading,
-						pitch: 15
-					}
-				};
+		// Calculates the panorama for the street view if all checks out.
+		function getStreetView(data, status) {
+			if (status == google.maps.StreetViewStatus.OK) {
+				var nearStreetViewLocation = data.location.latLng;
+				var heading = google.maps.geometry.spherical.computeHeading(
+					nearStreetViewLocation, marker.position);
+					infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
+					var panoramaOptions = {
+						position: nearStreetViewLocation,
+						pov: {
+							heading: heading,
+							pitch: 15
+						}
+					};
 				var panorama = new google.maps.StreetViewPanorama(
 					document.getElementById('pano'), panoramaOptions);
-		} else {
-			infowindow.setContent('<div>' + marker.title + '</div>' +
-				'<div>No Street View Available</div>');
+			} else {
+				infowindow.setContent('<div>' + marker.title + '</div>' +
+					'<div>No Street View Available</div>');
+			}
 		}
+		// Get closest streetview image within 50 meters of marker position.
+		streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+		// Open infowindow on correct marker.
+		infowindow.open(map, marker);
 	}
-	// Get closest streetview image within 50 meters of marker position.
-	streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
-	// Open infowindow on correct marker.
-	infowindow.open(map, marker);
+}
 
 // Takes in a color and then creates a new marker icon based on the color scheme.
 function makeMarkerIcon(markerColor) {
@@ -391,16 +387,13 @@ function initMap() {
 		// Push marker to our array of markers.
 		vm.locationsArray.push(marker);
 
-		// Attaches marker objects to ko array
-		//vm.locationsArray()[i].marker = marker;
+		function clickMarker(){
+			fsrequest(this, infowindow);
+			populateInfoWindow(this, infowindow);
+		}
 
 		// Create onClick event to open an infowindow for each marker.
-		marker.addListener('click', function(marker) {
-			return function () {
-				fsrequest(this, infowindow);
-				populateInfoWindow(this, infowindow);
-			}
-		});
+		marker.addListener('click', clickMarker);
 
 		document.getElementById('zoom-to-area').addEventListener('click', function() {
 			zoomToArea();
