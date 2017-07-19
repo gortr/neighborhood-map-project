@@ -288,7 +288,7 @@ function zoomToArea() {
 
 var fsrequest = function (marker, infowindow) {
 	var apiURL = 'https://api.foursquare.com/v2/venues/';
-	var foursquareClientID = '4VTAHD05VR3MNY01EETUDFB4XZLF2EIULNAERXXB1GWUEHSD'
+	var foursquareClientID = '4VTAHD05VR3MNY01EETUDFB4XZLF2EIULNAERXXB1GWUEHSD';
 	var foursquareSecret ='DFGEXFK1B40GMC0TIEYNGARJQIISGNJ0YMY42IXHSOA0XRE1';
 	var foursquareVersion = '20170115';
 	var venueFoursquareID = marker.id;
@@ -307,7 +307,7 @@ var fsrequest = function (marker, infowindow) {
 		infowindow.open(map, marker);
 		},
 		error: function(error) {
-			alert("Error, Four Square api data could not display")
+			alert("Error, Four Square api data could not display");
 		}
 	});
 };
@@ -341,14 +341,13 @@ var ViewModel = function() {
 			return self.filteredList();
 		} else {
 			return ko.utils.arrayFilter(self.filteredList(), function(item) {
-				var string = item.title.toLowerCase().indexOf(filter) >= 0
-						item.setVisible(string);
-						return string;
+				var string = item.title.toLowerCase().indexOf(filter) >= 0;
+						return item.setVisible(string);
 				return stringStartsWith(string, filter);
 			});
 		}
 	}, self);
-}
+};
 
 // **************************
 // * - MAP INITIALIZATION - *
