@@ -299,11 +299,11 @@ var fsrequest = function (marker, infowindow) {
 		url: foursquareURL,
 		success: function(data) {
 	    console.log(data);
-	    var rating = data.response.venue.rating;
+	    // var rating = data.response.venue.rating;
 	    var name = data.response.venue.name;
 	    var location = data.response.venue.location.address;
 
-	    infowindow.setContent(name + ", FourSquare Rating: " + rating.toString() + ", " + location);
+	    infowindow.setContent(name + "," + location);
 		infowindow.open(map, marker);
 		},
 		error: function(error) {
