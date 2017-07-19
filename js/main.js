@@ -1,5 +1,5 @@
 // Makes sure code within this script is utilized as intended.
-'use strict';
+'use strict'
 
 // Styling for usage on map.
 var styles = [
@@ -265,7 +265,7 @@ function zoomToArea() {
 	// Get address or place that user inputted.
 	var address = document.getElementById('zoom-to-area-text').value;
 	// Make sure address isn't blank.
-	if (address == '') {
+	if (address === '') {
 		window.alert('You must enter an area or address');
 	} else {
 		// Geocode address/area inputted to get the center. Then center and zoom in on area.
@@ -350,9 +350,6 @@ var ViewModel = function() {
 	}, self);
 }
 
-vm = new ViewModel();
-ko.applyBindings(vm);
-
 // **************************
 // * - MAP INITIALIZATION - *
 // **************************
@@ -411,3 +408,6 @@ function initMap() {
 	}
 	map.fitBounds(bounds);
 }
+
+vm = new ViewModel();
+ko.applyBindings(vm);
