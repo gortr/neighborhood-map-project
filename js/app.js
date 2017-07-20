@@ -130,8 +130,6 @@ var ViewModel = function() {
 
 	self.filteredList = self.locationsArray;
 
-
-
 	self.filteredLocations = ko.computed(function() {
 		var filter = self.filterKeyword().toLowerCase();
 		if (!filter) {
@@ -148,8 +146,8 @@ var ViewModel = function() {
 		}
 	}, self);
 
-	self.showMe = function(locale) {
-		google.maps.event.trigger(marker[i], 'click');
+	self.showMe = function(filteredLocations) {
+		google.maps.event.trigger(filteredLocations, 'click');
 	};
 };
 
